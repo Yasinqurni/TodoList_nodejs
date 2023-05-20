@@ -9,7 +9,7 @@ const userService = new UserService(userRepository)
 const authService = new AuthService(userRepository)
 const authController = new AuthController(authService, userService)
 
-router.post('/api/register', authController.register)
-router.post('/api/login', authController.login)
+router.post('/api/register', authController.register.bind(authController))
+router.post('/api/login', authController.login.bind(authController))
 
 module.exports = router

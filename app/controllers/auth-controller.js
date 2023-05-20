@@ -12,11 +12,14 @@ class AuthController{
     async register(req, res, next){
         try {
             const payload = req.body
+            if(!payload.code) {throw new ErrorResponse(400, 'please insert the code')}
             
             const findUser = await this.userService.findUserByCode(payload.code)
             if(findUser) { throw new ErrorResponse(400, 'code has been used')}
+
             const register = await this.authService.register(payload)
             if(!register) { throw new ErrorResponse(400, 'cannot register user')}
+
             return new Response(res, 200, 'user registered successfully')
         } catch (error) {
             next(error)

@@ -10,7 +10,7 @@ class UserRepository{
             address: payload.address,
             phone: payload.phone,
             email: payload.email,
-            code: bcrypt.bcrypt.hashSync(payload.code, 8),
+            code: bcrypt.bcrypt.hashSync(toString(payload.code), 8),
         })
     }
     

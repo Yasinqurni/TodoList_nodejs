@@ -15,7 +15,8 @@ class UserService{
         return user
     }
     async findUserByCode(code){
-        hashCode = bcrypt.bcrypt.hashSync(code, 8)
+        const hashCode = bcrypt.bcrypt.hashSync(toString(code), 8)
+        console.log(hashCode)
         const user = this.userRepository.findUserByCode(hashCode)
         if(!user) {throw new Error("user not found")}
         return user
