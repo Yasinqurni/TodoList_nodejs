@@ -1,6 +1,6 @@
 const User = require('./users-model')
-const Title = require('./title-model')
-const Todo = require('./todo-model')
+const Title = require('./titles-model')
+const Todo = require('./todos-model')
 
 Title.belongsTo(User, {
     foreignKey: 'user_id',
