@@ -14,6 +14,10 @@ Activity.belongsTo(Title, {
     foreignKey: 'title_id',
 })
 
+Title.hasMany(Activity, {
+    foreignKey: 'title_id',
+})
+
 module.exports = {
     User,
     Title,

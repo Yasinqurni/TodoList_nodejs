@@ -6,19 +6,9 @@ class ActivityRepository {
         this.model = activity
     }
 
-    async findAll() {
-        return this.model.findAll()
-    }
-
-    async findById(id) {
-        return this.model.findOne({
-            where: {id: id}
-        })
-    }
-
     async create(activity, userId, done) {
         return this.model.create({
-            activity: activity,
+            list: activity,
             user_id: userId,
             done: done
         })
@@ -28,10 +18,29 @@ class ActivityRepository {
         return this.model.bulkCreate(payload)
     }
 
-    async update(activity, userId, id) {
+    async update(activity, id) {
         return this.model.update(
-            {activity: activity},
-            {where: {user_id: userId, id: id}}
+            {list: activity},
+            {where: {id: id}}
+        )
+    }
+
+    async getById(id, userId, titleId) {
+        return this.model.findOne({
+            where: {user_id: userId, id: id, title_id: titleId}
+        })
+    }
+
+    async getAll(userId, titleId) {
+        return this.model.findAll({
+            where: {user_id: userId, title_id: titleId}
+        })
+    }
+
+    async updateStatus(id) {
+        return this.model.update(
+            {done: true},
+            {where: {id: id}}
         )
     }
 

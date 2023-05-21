@@ -1,3 +1,5 @@
+const ErrorResponse = require('../../response-helper/error-helper')
+const Response = require('../../response-helper/response-helper')
 
 class ActivityController {
 

@@ -1,8 +1,8 @@
 const AuthRoute = require('./auth-route')
-const TodolistRoute = require('./todolists-route')
+const TitleRoute = require('./titles-route')
 
 
 module.exports = {
     AuthRoute,
-    TodolistRoute
+    TitleRoute
 }

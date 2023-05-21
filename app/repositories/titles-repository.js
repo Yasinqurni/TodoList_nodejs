@@ -2,36 +2,42 @@
 
 class TitleRepository {
 
-    constructor(Title) {
-        this.model = Title
+    constructor(Title, Activity) {
+        this.title = Title
+        this.activity = Activity
+
     }
 
-    async findAll() {
-        return this.model.findAll()
+    async findAll(auth) {
+        return this.title.findAll({
+            where: {user_id: auth},
+            include:{model: this.activity}
+        })
     }
 
-    async findById(id) {
-        return this.model.findOne({
-            where: {id: id}
+    async findById(id, auth) {
+        return this.title.findOne({
+            where: {id: id, user_id: auth},
+            include:{model: this.activity}
         })
     }
 
     async create(title, userId) {
-        return this.model.create({
+        return this.title.create({
             title: title.title,
             user_id: userId
         })
     }
 
-    async update(title, userId, id) {
-        return this.model.update(
+    async update(title, id) {
+        return this.title.update(
             {title: title},
-            {where: {user_id: userId, id: id}}
+            {where: {id: id}}
         )
     }
 
     async delete(id) {
-        return this.model.destroy({where: {id: id}})
+        return this.title.destroy({where:{id: id}})
     }
 }
 
