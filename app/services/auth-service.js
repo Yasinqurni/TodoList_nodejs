@@ -1,6 +1,5 @@
 
 const {generateToken} = require('../../lib/jwt')
-const isMatch = require('../../lib/bcrypt')
 
 class AuthService{
     constructor(userRepository) {

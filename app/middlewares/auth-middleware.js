@@ -1,25 +1,28 @@
 const jwt = require('../../lib/jwt')
 const config = require('../../db/config/auth')
-const message = require('../../response-helpers/messages').MESSAGE
-const responseHendler = require('../../response-helpers/error-helper')
-
-
+const ErrorResponse = require('../../response-helper/error-helper')
 
 class tokenJwt {
 
     verifyToken (req, res, next) {
 
-        const token = req.headers['authorization']
-        if(!token) {return responseHendler.authenticationFailed(res, message().unathentication)}
-
-        jwt.verify(token, config.secret, (err, decoded) =>{
-            if(err) {
-                return responseHendler.authenticationFailed(res, message().unathentication)
-            }
-            req.userId = decoded.id
-            req.userRole = decoded.role
-            next()
-        })
+        try {
+            const token = req.headers['authorization']
+            if(!token) {throw new ErrorResponse(400, 'cannot register user')}
+    
+            jwt.verify(token, config.secret, (err, decoded) =>{
+                if(err) {
+                    throw new ErrorResponse(400, 'cannot register user')
+                }
+                req.userId = decoded.id
+                req.userRole = decoded.role
+                next()
+            })
+        } 
+        
+        catch (error) {
+            next(error)
+        }
     }
 }
 

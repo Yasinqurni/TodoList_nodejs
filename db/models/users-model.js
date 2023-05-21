@@ -12,21 +12,9 @@ user.init(
       primaryKey: true,
       autoIncrement: true
       },
-    fullname: {
+    name: {
       type: DataTypes.STRING,
       allowNull: true
-    },
-    address: {
-      type: DataTypes.STRING,
-      allowNull: true
-    },
-    phone: {
-      type: DataTypes.STRING,
-      allowNull: true
-    },
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false
     },
     code: {
       type: DataTypes.STRING,

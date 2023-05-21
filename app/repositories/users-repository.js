@@ -1,9 +1,11 @@
 const bcrypt = require('../../lib/bcrypt')
 
 class UserRepository{
+
     constructor(User){
         this.model = User
     }
+    
     createUser(payload){
         return this.model.create({
             fullname: payload.fullname,
@@ -17,12 +19,6 @@ class UserRepository{
                 }
             })
             
-        })
-    }
-    
-    async findUserByEmail(payload){
-        return this.model.findOne({
-            where: { email: payload.email }
         })
     }
     
