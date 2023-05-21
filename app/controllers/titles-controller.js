@@ -106,6 +106,10 @@ class TitleController {
             const id = req.params.id
             const auth = req.userId
 
+            if(Object.keys(id).length === 0) {
+                throw new ErrorResponse(400, 'please insert the parameter')
+            }
+
             const getAll = await this.titleService.findById(id, auth)
             if(!getAll) { 
                 throw new ErrorResponse(400, 'todolist not found') 
@@ -113,6 +117,32 @@ class TitleController {
 
             return new Response().response(res, 200, getAll)
         } 
+        catch (error) {
+            next(error)
+        }
+    }
+
+        
+    async addActivity(req, res, next) {
+        
+        try {
+            const params = req.params.id
+            const activity = req.body
+            const auth = req.userId
+
+            if(Object.keys(activity).length === 0 || Object.keys(params).length === 0) {
+                throw new ErrorResponse(400, 'please insert the parameter')
+            }
+            const getAll = await this.titleService.findById(id, auth)
+            if(!getAll) { 
+                throw new ErrorResponse(400, 'todolist not found') 
+            }
+            const update = await this.activityService.create(activity.list, auth, false )
+            if(!update) { throw new ErrorResponse(400, 'cannot update status activity')}
+
+            return new Response().response(res, 200, 'activity done!')
+        } 
+        
         catch (error) {
             next(error)
         }

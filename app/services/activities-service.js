@@ -6,6 +6,10 @@ class ActivityService {
         this.activityRepository = ActivityRepository
     }
 
+    async create(activity, userId, done) {
+        return await this.activityRepository.create(activity, userId, done)
+    }
+
     async bulkCreate(activity, userId, titleId) {
         const activities = []
         const keys = Object.keys(activity)
@@ -26,8 +30,8 @@ class ActivityService {
         return await this.activityRepository.bulkCreate(activities)
     }
 
-    async update(title, id, userId) {
-        return await this.activityRepository.update(title, id, userId)
+    async update(activity, id) {
+        return await this.activityRepository.update(activity, id)
     }
 
     async delete(id) {
@@ -38,8 +42,8 @@ class ActivityService {
         return await this.activityRepository.updateStatus(id)
     }
 
-    async getById(id, userId, titleId) {
-        return await this.activityRepository.getById(id, userId, titleId)
+    async getById(id) {
+        return await this.activityRepository.getById(id)
     }
 
     async getAll(userId, titleId) {

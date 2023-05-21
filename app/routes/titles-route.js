@@ -23,5 +23,7 @@ router.delete('/api/todolist/:id', tokenjwt.verifyToken, titleController.deleteT
 router.post('/api/title', tokenjwt.verifyToken, titleController.createTitle.bind(titleController))
 //update title
 router.patch('/api/title/:id', tokenjwt.verifyToken, titleController.updateTitle.bind(titleController))
+//add activity
+router.post('/api/activity/:id', tokenjwt.verifyToken, titleController.addActivity.bind(titleController))
 
 module.exports = router

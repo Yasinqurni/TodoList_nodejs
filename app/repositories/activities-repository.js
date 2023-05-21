@@ -25,9 +25,9 @@ class ActivityRepository {
         )
     }
 
-    async getById(id, userId, titleId) {
+    async getById(id, userId) {
         return this.model.findOne({
-            where: {user_id: userId, id: id, title_id: titleId}
+            where: {user_id: userId, id: id}
         })
     }
 
