@@ -10,7 +10,13 @@ class UserRepository{
             address: payload.address,
             phone: payload.phone,
             email: payload.email,
-            code: bcrypt.bcrypt.hashSync(toString(payload.code), 8),
+            code: bcrypt.bcrypt.hashSync(payload.code.toString(), 8, (err, hash) => {
+                if (err) {
+                  console.error(err);
+                  return
+                }
+            })
+            
         })
     }
     
@@ -25,11 +31,9 @@ class UserRepository{
             where: { id: email }
         })
     }
-    
-    findUserByCode(payload){
-        return this.model.findOne({
-            where: { code: payload }
-        })
+
+    findAllUsers(){
+        return this.model.findAll()
     }
 
 }

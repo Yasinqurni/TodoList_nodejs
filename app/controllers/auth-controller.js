@@ -12,15 +12,19 @@ class AuthController{
     async register(req, res, next){
         try {
             const payload = req.body
+            console.log(payload)
             if(!payload.code) {throw new ErrorResponse(400, 'please insert the code')}
             
-            const findUser = await this.userService.findUserByCode(payload.code)
+            const code = payload.code.toString()
+            const findUser = await this.userService.findUserByCode(code)
+            
             if(findUser) { throw new ErrorResponse(400, 'code has been used')}
 
             const register = await this.authService.register(payload)
             if(!register) { throw new ErrorResponse(400, 'cannot register user')}
 
             return new Response(res, 200, 'user registered successfully')
+
         } catch (error) {
             next(error)
         }
@@ -29,9 +33,12 @@ class AuthController{
     async login(req, res, next){
         try {
             const payload = req.body
+
             const findUser = await this.userService.findUserByCode(payload.code)
             if(findUser) { throw new ErrorResponse(400, 'code has been used')}
+
             const token = await this.authService.login(payload, findUser)
+            
             return new Response(res, 200, token)
         } catch (error) {
             next(error)
