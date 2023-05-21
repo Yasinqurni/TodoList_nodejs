@@ -11,10 +11,8 @@ class AuthService{
         return this.repository.createUser(payload)
     }
 
-    async login(payload, existingData){
-            const match = await isMatch(payload, existingData)
-            if(!match) {throw new Error('wrong code')}
-            const token = await generateToken(existingData)
+    async login(payload){
+            const token = await generateToken(payload)
             return token
     }
 }

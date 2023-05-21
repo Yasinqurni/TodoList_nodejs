@@ -2,28 +2,30 @@ const ErrorResponse = require('../../response-helper/error-helper')
 const Response = require('../../response-helper/response-helper')
 
 class AuthController{
+
     constructor(authService, userService) {
-        this.authService = authService;
-        console.log(this.authService)
-        this.userService = userService;
-        console.log(this.userService)
+        this.authService = authService
+        this.userService = userService
     }
 
     async register(req, res, next){
+
         try {
             const payload = req.body
-            console.log(payload)
-            if(!payload.code) {throw new ErrorResponse(400, 'please insert the code')}
+
+            if(!payload.code) {throw new ErrorResponse(400, 'please insert the data')}
+            if(typeof payload.code !== 'number') {throw new ErrorResponse(400, 'please insert the code as an number')}
             
             const code = payload.code.toString()
+            if(code.length !== 4) {throw new ErrorResponse(400, 'please insert the code with exactly 4 numbers')}
+
             const findUser = await this.userService.findUserByCode(code)
-            
-            if(findUser) { throw new ErrorResponse(400, 'code has been used')}
+            if(findUser.status == true) { throw new ErrorResponse(400, 'code has been used')}
 
             const register = await this.authService.register(payload)
             if(!register) { throw new ErrorResponse(400, 'cannot register user')}
 
-            return new Response(res, 200, 'user registered successfully')
+            return new Response().response(res, 200, 'user registered successfully')
 
         } catch (error) {
             next(error)
@@ -31,15 +33,24 @@ class AuthController{
     }
 
     async login(req, res, next){
+
         try {
             const payload = req.body
 
-            const findUser = await this.userService.findUserByCode(payload.code)
-            if(findUser) { throw new ErrorResponse(400, 'code has been used')}
-
-            const token = await this.authService.login(payload, findUser)
+            if(!payload.code) {throw new ErrorResponse(400, 'please insert the data')}
+            if(typeof payload.code !== 'number') {throw new ErrorResponse(400, 'please insert the code as an number')}
             
-            return new Response(res, 200, token)
+            const code = payload.code.toString()
+            if(code.length !== 4) {throw new ErrorResponse(400, 'please insert the code with exactly 4 numbers')}
+
+
+            const findUser = await this.userService.findUserByCode(code)
+            if(findUser.status == false) { throw new ErrorResponse(400, 'user not registered')}
+            
+            const token = await this.authService.login(findUser.data)
+            
+            return new Response().responseLogin(res, 200, token)
+
         } catch (error) {
             next(error)
         }

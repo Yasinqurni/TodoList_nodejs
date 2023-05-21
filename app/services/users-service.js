@@ -20,16 +20,29 @@ class UserService{
     }
 
     async findUserByCode(code){
+
         const findAllUsers = await this.userRepository.findAllUsers()
-        if(findAllUsers.length === 0) return false
+        if(findAllUsers.length === 0) {
+            return {
+                data: null,
+                status: false
+            }
+        }
 
         for(let i = 0; i < findAllUsers.length; i++) {
             const match = await bcrypt.isMatch(code, findAllUsers[i].code)
             if(match === true) {
-                return true
+                return {
+                    data: findAllUsers[i],
+                    status: true
+                }
             }
         }
-        return false
+
+        return {
+            data: null,
+            status: false
+        }
     }
 }   
 

@@ -1,11 +1,20 @@
 class Response {
-  constructor(res, status, data) {
+
+  response(res, status, data){
       return res.status(status).json({
-          status: true,
-          data: data,
-          error: {}
-      })
+      status: true,
+      data: data,
+      error: {}
+    })
   }
+
+  responseLogin(res, status, data){
+    return res.status(status).json({
+    status: true,
+    token: data,
+    error: {}
+  })
+}
 }
 
 module.exports = Response
