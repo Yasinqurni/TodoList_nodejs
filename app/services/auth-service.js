@@ -7,7 +7,7 @@ class AuthService{
     }
 
     async register(payload){
-        return this.repository.createUser(payload)
+        return this.repository.create(payload)
     }
 
     async login(payload){

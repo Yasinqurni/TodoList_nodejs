@@ -8,11 +8,11 @@ class tokenJwt {
 
         try {
             const token = req.headers['authorization']
-            if(!token) {throw new ErrorResponse(400, 'cannot register user')}
+            if(!token) {throw new ErrorResponse(400, 'please login')}
     
-            jwt.verify(token, config.secret, (err, decoded) =>{
+            jwt.jwt.verify(token, config.secret, (err, decoded) =>{
                 if(err) {
-                    throw new ErrorResponse(400, 'cannot register user')
+                    throw new ErrorResponse(400, 'cannot verify token')
                 }
                 req.userId = decoded.id
                 req.userRole = decoded.role

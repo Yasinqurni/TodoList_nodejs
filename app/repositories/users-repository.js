@@ -6,7 +6,7 @@ class UserRepository{
         this.model = User
     }
     
-    createUser(payload){
+    create(payload){
         return this.model.create({
             fullname: payload.fullname,
             address: payload.address,
@@ -22,13 +22,13 @@ class UserRepository{
         })
     }
     
-    async findUserById(email){
+    async findById(id){
         return this.model.findOne({
-            where: { id: email }
+            where: { id: id }
         })
     }
 
-    findAllUsers(){
+    findAll(){
         return this.model.findAll()
     }
 

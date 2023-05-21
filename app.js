@@ -4,10 +4,11 @@ const bodyParser = require('body-parser')
 // // const swaggerUi = require(`swagger-ui-express`)
 // // const YAML = require('yamljs');
 // // const swaggerDocument = YAML.load(`./swagger.yml`);
-const {authRoute} = require('./app/routes')
+const {AuthRoute, TodolistRoute} = require('./app/routes')
 app.use(bodyParser.json())
 // Router
-app.use('/v1', authRoute)
+app.use('/v1', AuthRoute)
+app.use('/v1', TodolistRoute)
 // // app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
 app.use((err, req, res, next) => {

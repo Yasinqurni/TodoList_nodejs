@@ -6,16 +6,16 @@ class UserService{
         this.userRepository = userRepository
     }
 
-    async findUserById(id){
-        const user = await this.userRepository.findUserByEmail(id);
+    async findById(id){
+        const user = await this.userRepository.findById(id);
         if(!user){throw new Error('user not found')}
 
         return user
     }
 
-    async findUserByCode(code){
+    async findByCode(code){
 
-        const findAllUsers = await this.userRepository.findAllUsers()
+        const findAllUsers = await this.userRepository.findAll()
         if(findAllUsers.length === 0) {
             return {
                 data: null,

@@ -13,13 +13,13 @@ class AuthController{
         try {
             const payload = req.body
 
-            if(!payload.code) {throw new ErrorResponse(400, 'please insert the data')}
+            if(Object.keys(payload).length === 0) {throw new ErrorResponse(400, 'please insert the data')}
             if(typeof payload.code !== 'number') {throw new ErrorResponse(400, 'please insert the code as an number')}
             
             const code = payload.code.toString()
             if(code.length !== 4) {throw new ErrorResponse(400, 'please insert the code with exactly 4 numbers')}
 
-            const findUser = await this.userService.findUserByCode(code)
+            const findUser = await this.userService.findByCode(code)
             if(findUser.status == true) { throw new ErrorResponse(400, 'code has been used')}
 
             const register = await this.authService.register(payload)
@@ -37,14 +37,14 @@ class AuthController{
         try {
             const payload = req.body
 
-            if(!payload.code) {throw new ErrorResponse(400, 'please insert the data')}
+            if(Object.keys(payload).length === 0) {throw new ErrorResponse(400, 'please insert the data')}
             if(typeof payload.code !== 'number') {throw new ErrorResponse(400, 'please insert the code as an number')}
             
             const code = payload.code.toString()
             if(code.length !== 4) {throw new ErrorResponse(400, 'please insert the code with exactly 4 numbers')}
 
 
-            const findUser = await this.userService.findUserByCode(code)
+            const findUser = await this.userService.findByCode(code)
             if(findUser.status == false) { throw new ErrorResponse(400, 'user not registered')}
             
             const token = await this.authService.login(findUser.data)
