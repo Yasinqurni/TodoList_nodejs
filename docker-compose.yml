@@ -1,45 +1,41 @@
 version: '3.8'
 
 services:
-  automation_testing:
-    build: 
+  todolist_expresjs:
+    build:
       dockerfile: Dockerfile
       context: .
     tty: true
     ports:
       - 9182:5151
     depends_on:
-      - automation_db
-      - automation_testing_migration
+      - todolist_db
+      - todolist_migration
     env_file:
-      - .env.development
-    command: sh -c "npm run start:dev"
+      - .env.production
+    command: sh -c "npm run start:prod"
     volumes:
-      - type: volume
-        source: automation_module_volume
-        target: /app/node_modules
-      - type: bind
-        source: .
-        target: /app
-  
-  automation_testing_migration:
-    build: 
+      - todolist_volume:/app/node_modules
+      - .:/app
+
+  todolist_migration:
+    build:
       dockerfile: Dockerfile
       context: .
     depends_on:
-      - automation_db
+      - todolist_db
     env_file:
-      - .env.development
-    command: sh -c "npm run db:migrate:development && npm run db:seed:development"
+      - .env.production
+    command: sh -c "npm run db:migrate:prod && npm run db:seed:prod"
     restart: on-failure
 
-  automation_db:
+  todolist_db:
     image: postgres:14
     ports:
       - 5437:5432
     environment:
       - POSTGRES_PASSWORD=12345678
-      - POSTGRES_DB=automation
+      - POSTGRES_DB=todolist
 
 volumes:
-  automation_module_volume:
+  todolist_volume:
