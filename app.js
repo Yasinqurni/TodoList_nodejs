@@ -2,16 +2,21 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const {AuthRoute, TitleRoute, ActivityRoute} = require('./app/routes')
-app.use(bodyParser.json())
-
+const cors = require('cors')
 const swaggerUi = require(`swagger-ui-express`)
 const YAML = require('yamljs');
 const swaggerDocument = YAML.load(`./swagger.yaml`);
+
+app.use(bodyParser.json())
+app.use(cors({
+    origin: 'http://34.227.205.237:9182'
+  }))
 // Router
 app.use('/v1', AuthRoute)
 app.use('/v1', TitleRoute)
 app.use('/v1', ActivityRoute)
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+
 
 app.use((err, req, res, next) => {
     console.log(err)
