@@ -71,9 +71,26 @@ Beberapa poin penting tentang cara kerja REST API adalah sebagai berikut:
     database    : postgresql
     ORM         : sequelize
 
--   list endpoint sebagai berikut:
+-   berikut adalah alamat swagger:
+```bash
+    http://34.227.205.237:9182/api-docs
+```
+
+- seed user:
+    - user 1: 1212
+    - user 2: 9532
+
+## Entity Relationship Diagram
+
+<p>
+  <a href="https://github.com/Yasinqurni" target="blank"><img src="https://res.cloudinary.com/deb05crrf/image/upload/v1684772982/images/erd_m0fpdt.png" width="200" /></a>
+</p>
 
 
+## Gambaran Design
+<p>
+  <a href="https://github.com/Yasinqurni" target="blank"><img src="https://res.cloudinary.com/deb05crrf/image/upload/v1684772943/images/desain_urelbu.png" width="200" /></a>
+</p>
 
 ## Develop By
 
