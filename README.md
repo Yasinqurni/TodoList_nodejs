@@ -7,7 +7,7 @@
 
 <h2 color="red">berikut adalah jawaban dari mock test pada soal 1 dan 2 </h2>
 
-## soal 1
+## Soal 1
 Apakah Kegunaan JSON pada REST API?
 
 jawaban:
@@ -31,7 +31,7 @@ secara khusus, fungsi dari JSON adalah sebagai berikut:
 -   struktur penulisan yang simple
 
 
-## soal 2
+## Soal 2
 Jelaskan bagaimana REST API bekerja!
 
 jawaban:
@@ -61,3 +61,25 @@ Beberapa poin penting tentang cara kerja REST API adalah sebagai berikut:
 -   Dengan menggunakan REST API, klien dapat berkomunikasi dengan server untuk mengakses dan memanipulasi 
     sumber daya. API menggunakan metode HTTP dan format data yang umum untuk memastikan komunikasi yang efisien 
     dan interoperabilitas antar platform.
+
+
+## Deskripsi Fitur
+-   source code dibangun dengan menggunakan Dependency Injection
+
+-   stack yang digunakan adalah:
+    framework   : express.js
+    database    : postgresql
+    ORM         : sequelize
+
+-   list endpoint sebagai berikut:
+
+
+
+## Develop By
+
+| Programmer | github address |
+| ---------- | -------------- |
+| Muhammad yasin Alqurni | https://github.com/Yasinqurni |
+
+Copyright (c) 2023 Muhammad Yasin Alqurni
+All rights reserved.

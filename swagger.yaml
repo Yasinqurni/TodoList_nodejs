@@ -1,0 +1,333 @@
+swagger: '2.0'
+info:
+  version: '1.0'
+  title: TodoList-express.js
+  contact: {}
+host: localhost:5151
+basePath: /v1/api
+securityDefinitions: {}
+schemes:
+- http
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+  /register:
+    post:
+      description: register
+      summary: register
+      tags:
+      - auth
+      operationId: register
+      deprecated: false
+      produces:
+      - application/json
+      consumes:
+      - application/json
+      parameters:
+      - name: Content-Type
+        in: header
+        required: false
+        enum:
+        - application/json
+        type: string
+        description: ''
+      - name: body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/registerrequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /login:
+    post:
+      description: login
+      summary: login
+      tags:
+      - auth
+      operationId: login
+      deprecated: false
+      produces:
+      - application/json
+      consumes:
+      - application/json
+      parameters:
+      - name: Content-Type
+        in: header
+        required: false
+        enum:
+        - application/json
+        type: string
+        description: ''
+      - name: body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/loginrequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /title:
+    post:
+      description: create
+      summary: create
+      tags:
+      - title
+      operationId: create
+      deprecated: false
+      produces:
+      - application/json
+      consumes:
+      - application/json
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        type: string
+        description: ''
+      - name: Content-Type
+        in: header
+        required: false
+        enum:
+        - application/json
+        type: string
+        description: ''
+      - name: body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/createrequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security: []
+  /title/{id}:
+    patch:
+      description: update
+      summary: update
+      tags:
+      - title
+      operationId: update
+      deprecated: false
+      produces:
+      - application/json
+      consumes:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        required: true
+        type: integer
+        format: int32
+        description: ''
+      - name: authorization
+        in: header
+        required: true
+        type: string
+        description: ''
+      - name: Content-Type
+        in: header
+        required: false
+        enum:
+        - application/json
+        type: string
+        description: ''
+      - name: body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/createrequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security: []
+  /todolist:
+    get:
+      description: getAll
+      summary: getAll
+      tags:
+      - todolist
+      operationId: getAll
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        type: string
+        description: ''
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security: []
+  /todolist/{id}:
+    get:
+      description: getById
+      summary: getById
+      tags:
+      - todolist
+      operationId: getById
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        required: true
+        type: integer
+        format: int32
+        description: ''
+      - name: authorization
+        in: header
+        required: true
+        type: string
+        description: ''
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security: []
+    delete:
+      description: delete
+      summary: delete
+      tags:
+      - todolist
+      operationId: delete
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        required: true
+        type: integer
+        format: int32
+        description: ''
+      - name: authorization
+        in: header
+        required: true
+        type: string
+        description: ''
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security: []
+  /:
+    get:
+      description: update-activity
+      summary: update-activity
+      tags:
+      - activity
+      operationId: update-activity
+      deprecated: false
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /activity/{id}:
+    delete:
+      description: delete-activity
+      summary: delete-activity
+      tags:
+      - activity
+      operationId: delete-activity
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        required: true
+        type: string
+        description: ''
+      responses:
+        '200':
+          description: ''
+          headers: {}
+    post:
+      description: done-activity
+      summary: done-activity
+      tags:
+      - activity
+      operationId: done-activity
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        required: true
+        type: string
+        description: ''
+      responses:
+        '200':
+          description: ''
+          headers: {}
+definitions:
+  registerrequest:
+    title: registerrequest
+    example:
+      fullname: ayrin syakaila
+      code: 3333
+    type: object
+    properties:
+      fullname:
+        type: string
+      code:
+        type: integer
+        format: int32
+    required:
+    - fullname
+    - code
+  loginrequest:
+    title: loginrequest
+    example:
+      code: 3333
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+    required:
+    - code
+  createrequest:
+    title: createrequest
+    example:
+      title: kegiatan dipagi hari senin
+    type: object
+    properties:
+      title:
+        type: string
+    required:
+    - title
+  updaterequest:
+    title: updaterequest
+    example:
+      title: kegiatan dipagi hari senin dan selasa
+    type: object
+    properties:
+      title:
+        type: string
+    required:
+    - title
+tags:
+- name: auth
+- name: title
+- name: todolist
+- name: activity
