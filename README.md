@@ -92,6 +92,28 @@ Beberapa poin penting tentang cara kerja REST API adalah sebagai berikut:
   <a href="https://github.com/Yasinqurni" target="blank"><img src="https://res.cloudinary.com/deb05crrf/image/upload/v1684772943/images/desain_urelbu.png" width="300" /></a>
 </p>
 
+## Setup Docker Compose
+
+1. Clone repository.
+
+2. bangun semua container dengan menggunakan `docker-compose build --no-cache`.
+
+4. jalankan container dengan menggunakan `docker-compose up`.
+
+   **Tips**:
+
+   - gunakan `--build` di `docker-compose` untuk memaksa memperbarui image yang telah dibuat, e.g:
+```bash
+   `docker-compose up --build`
+```
+
+5. biarkan docker bekerja dan anda bisa minum secangkir kopi.
+
+### Cleaning up
+
+1. When you're done, `Ctrl-C` in the main `docker-compose up` window to terminate the running processes.
+
+1. Run `docker-compose down` to stop and remove containers.
 ## Develop By
 
 | Programmer | github address |
