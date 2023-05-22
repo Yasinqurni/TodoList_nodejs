@@ -67,9 +67,9 @@ Beberapa poin penting tentang cara kerja REST API adalah sebagai berikut:
 -   source code dibangun dengan menggunakan Dependency Injection
 
 -   stack yang digunakan adalah:
-    framework   : express.js
-    database    : postgresql
-    ORM         : sequelize
+    -   framework   : express.js
+    -   database    : postgresql
+    -   ORM         : sequelize
 
 -   berikut adalah alamat swagger:
 ```bash
@@ -82,14 +82,14 @@ Beberapa poin penting tentang cara kerja REST API adalah sebagai berikut:
 
 ## Entity Relationship Diagram
 
-<p>
-  <a href="https://github.com/Yasinqurni" target="blank"><img src="https://res.cloudinary.com/deb05crrf/image/upload/v1684772982/images/erd_m0fpdt.png" width="200" /></a>
+<p align="center">
+  <a href="https://github.com/Yasinqurni" target="blank"><img src="https://res.cloudinary.com/deb05crrf/image/upload/v1684772982/images/erd_m0fpdt.png" width="300" /></a>
 </p>
 
 
 ## Gambaran Design
-<p>
-  <a href="https://github.com/Yasinqurni" target="blank"><img src="https://res.cloudinary.com/deb05crrf/image/upload/v1684772943/images/desain_urelbu.png" width="200" /></a>
+<p align="center">
+  <a href="https://github.com/Yasinqurni" target="blank"><img src="https://res.cloudinary.com/deb05crrf/image/upload/v1684772943/images/desain_urelbu.png" width="300" /></a>
 </p>
 
 ## Develop By
