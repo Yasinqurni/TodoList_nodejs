@@ -14,8 +14,8 @@ const tokenjwt = new tokenJwt()
 //update activity
 router.patch('/api/activity/:id', tokenjwt.verifyToken, activityController.updateActivity.bind(activityController))
 //delete activity
-router.delete('/api/activity/:id', tokenjwt.verifyToken, activityController.updateActivity.bind(activityController))
+router.delete('/api/activity/:id', tokenjwt.verifyToken, activityController.deleteActivity.bind(activityController))
 //update done
-router.post('/api/activity/:id', tokenjwt.verifyToken, activityController.updateActivity.bind(activityController))
+router.post('/api/done/:id', tokenjwt.verifyToken, activityController.done.bind(activityController))
 
 module.exports = router

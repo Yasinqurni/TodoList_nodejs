@@ -6,10 +6,11 @@ class ActivityRepository {
         this.model = activity
     }
 
-    async create(activity, userId, done) {
+    async create(activity, userId,titleId, done) {
         return this.model.create({
             list: activity,
             user_id: userId,
+            title_id: titleId,
             done: done
         })
     }
@@ -27,7 +28,10 @@ class ActivityRepository {
 
     async getById(id, userId) {
         return this.model.findOne({
-            where: {user_id: userId, id: id}
+            where: {
+                user_id: userId, 
+                id: id
+            }
         })
     }
 

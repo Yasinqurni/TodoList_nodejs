@@ -6,28 +6,23 @@ class ActivityService {
         this.activityRepository = ActivityRepository
     }
 
-    async create(activity, userId, done) {
-        return await this.activityRepository.create(activity, userId, done)
+    async create(activity, userId, titleId, done) {
+        return await this.activityRepository.create(activity, userId, titleId, done)
     }
 
-    async bulkCreate(activity, userId, titleId) {
-        const activities = []
-        const keys = Object.keys(activity)
+    async bulkCreate(activity, userId, titleId, done) {
+      
+        const listArray = Object.keys(activity).map((key) => {
+            const activities = {}
+            activities.list = activity[key]
+            activities.user_id = userId
+            activities.title_id = titleId
+            activities.done = done
 
-        for (let i = 0; i < keys.length; i++) {
-            const key = keys[i]
-            const value = activity[key]
-            const titleObj = {}
-            titleObj.user_id = userId
-            titleObj.title_id = titleId
-            titleObj.list = value
-            titleObj.done = false
-           
-            activities.push(titleObj)
-            
-          }
+            return activities
+          })
 
-        return await this.activityRepository.bulkCreate(activities)
+        return await this.activityRepository.bulkCreate(listArray)
     }
 
     async update(activity, id) {
@@ -35,15 +30,15 @@ class ActivityService {
     }
 
     async delete(id) {
-        return await this.activityRepository.delete(id, userId)
+        return await this.activityRepository.delete(id)
     }
 
     async updateStatus(id) {
         return await this.activityRepository.updateStatus(id)
     }
 
-    async getById(id) {
-        return await this.activityRepository.getById(id)
+    async getById(id, auth) {
+        return await this.activityRepository.getById(id, auth)
     }
 
     async getAll(userId, titleId) {
