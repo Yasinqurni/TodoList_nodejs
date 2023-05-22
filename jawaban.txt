@@ -1,13 +1,6 @@
-<p align="center">
-  <a href="https://https://github.com/Debugging-demon/Bingle-Shop" target="blank"><img src="https://res.cloudinary.com/deb05crrf/image/upload/v1683719945/express_vre91p.webp" width="200" alt="Node.js" /></a>
-</p>
+berikut adalah jawaban dari mock test pada soal 1 dan 2.
 
-<h1 align="center">TODO LIST</h1>
-
-
-<h2 color="red">berikut adalah jawaban dari mock test pada soal 1 dan 2 </h2>
-
-## soal 1
+soal 1
 Apakah Kegunaan JSON pada REST API?
 
 jawaban:
@@ -31,7 +24,7 @@ secara khusus, fungsi dari JSON adalah sebagai berikut:
 -   struktur penulisan yang simple
 
 
-## soal 2
+soal 2
 Jelaskan bagaimana REST API bekerja!
 
 jawaban:
