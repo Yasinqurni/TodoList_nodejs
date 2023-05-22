@@ -5,7 +5,6 @@ services:
     build:
       dockerfile: Dockerfile
       context: .
-    tty: true
     ports:
       - 9182:5151
     depends_on:
