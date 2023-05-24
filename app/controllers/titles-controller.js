@@ -1,5 +1,6 @@
 const ErrorResponse = require('../../response-helper/error-helper')
 const Response = require('../../response-helper/response-helper')
+const NoteResponse = require('../decorators/notes-decorator')
 
 
 class TitleController {
@@ -93,7 +94,10 @@ class TitleController {
                 throw new ErrorResponse(400, 'todolist not found') 
             }
 
-            return new Response().response(res, 200, getAll)
+            const noteresponse = new NoteResponse()
+            const responsearray = await noteresponse.responseArray(getAll)
+
+            return new Response().response(res, 200, responsearray)
         } 
         catch (error) {
             next(error)
@@ -110,12 +114,15 @@ class TitleController {
                 throw new ErrorResponse(400, 'please insert the parameter')
             }
 
-            const getAll = await this.titleService.findById(id, auth)
-            if(!getAll) { 
+            const getById = await this.titleService.findById(id, auth)
+            if(!getById) { 
                 throw new ErrorResponse(400, 'todolist not found') 
             }
 
-            return new Response().response(res, 200, getAll)
+            const noteresponse = new NoteResponse()
+            const responseobj = await noteresponse.responseobj(getById)
+
+            return new Response().response(res, 200, responseobj)
         } 
         catch (error) {
             next(error)
