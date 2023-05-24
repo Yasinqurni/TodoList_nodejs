@@ -3,7 +3,7 @@ info:
   version: '1.0'
   title: TodoList-express.js
   contact: {}
-host: 34.227.205.237:9182
+host: 44.204.11.143:9182
 basePath: /v1/api
 securityDefinitions: {}
 schemes:

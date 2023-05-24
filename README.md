@@ -73,7 +73,7 @@ Beberapa poin penting tentang cara kerja REST API adalah sebagai berikut:
 
 -   berikut adalah alamat swagger:
 ```bash
-    http://34.227.205.237:9182/api-docs
+    http://44.204.11.143:9182/api-docs/
 ```
 
 - seed user:
